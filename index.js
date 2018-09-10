@@ -4,11 +4,10 @@ var io = require('socket.io')(http);
 const mongo = require('mongodb').MongoClient;
 
 //Connect to mongo...
-mongo.connect('mongodb://127.0.0.1/mongochat', function(err, db){
+mongo.connect('mongodb://127.0.0.1/team_chat_data', function(err, db){
   if(err){
       throw err;
   }
-});
 
 console.log('mongoDB Connected...');
 
@@ -24,7 +23,7 @@ io.on('connection', function(socket){
 });
 
 io.on('connection', function(socket){
-  let chats = db.collection('codechef-chats');
+  let chat = db.collection('codechef-chats');
 
   // Create function to send status
         sendStatus = function(s){
@@ -64,6 +63,7 @@ io.on('connection', function(socket){
                         });
                     }
                 });
+          });
 });
 
 http.listen(3000, function(){
