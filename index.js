@@ -4,15 +4,24 @@ var io = require('socket.io')(http);
 const mongo = require('mongodb').MongoClient;
 
 //Connect to mongo...
-mongo.connect('mongodb://mongo:27017/team_chat_data', function(err, db){
+mongo.connect('mongodb://127.0.0.1:27017/team_chat_data', function(err, db){
+
   if(err){
-      throw err;
+      throw(err);
   }
 
 console.log('mongoDB Connected...');
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/login', function(req, res){
+  res.sendFile(__dirname + '/login.html');
+});
+
+app.get('/chat.json', function(req, res){
+  res.json(data);
 });
 
 io.on('connection', function(socket){
