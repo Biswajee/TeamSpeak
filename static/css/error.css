@@ -1,0 +1,100 @@
+@import url(css_reset.min.css);
+@import url(app_defaults.min.css);
+
+body {
+  font-family:'Open sans',sans-serif;
+  background:#f0f0f0;
+  color:#333
+}
+
+.error_files {
+  text-align:center;
+  line-height:1.5;
+}
+
+.error_files .error_image {
+  width:200px;
+  height:200px;
+  margin-bottom:10px;
+  -webkit-animation:bobupndown 5.1s infinite;
+  animation:bobupndown 5.1s infinite
+}
+
+@-webkit-keyframes bobupndown {
+  0%,100%{-webkit-transform:translate3d(0,7px,0)}
+  50%{-webkit-transform:translate3d(0,-7px,0)}
+}
+
+@keyframes bobupndown {
+  0%,100%{transform:translate3d(0,7px,0)}
+  50%{transform:translate3d(0,-7px,0)}
+}
+
+.error_files .error_image img {
+  -webkit-animation:swerve 7s infinite;
+  animation:swerve 7s infinite;
+  -webkit-transform-origin:50% 0;
+  transform-origin:50% 0
+}
+
+@-webkit-keyframes swerve {
+  0%,100%{-webkit-transform:rotateZ(1deg)}
+  50%{-webkit-transform:rotateZ(-1deg)}
+}
+
+@keyframes swerve {
+  0%,100%{transform:rotateZ(1deg)}
+  50%{transform:rotateZ(-1deg)}
+}
+
+.error_files .ghost_shadow {
+  height:20px;
+  width:100%;
+  border-radius:50%;
+  background:rgba(0,0,0,.5);
+  -webkit-animation:shadow_opacity 5.1s infinite;
+  animation:shadow_opacity 5.1s infinite
+}
+
+@-webkit-keyframes shadow_opacity {
+  0%,100%{opacity:.05;-webkit-transform:scale(1,1)}
+  50%{opacity:.02;-webkit-transform:scale(.9,.9)}
+}
+
+@keyframes shadow_opacity {
+  0%,100%{opacity:.05;transform:scale(1,1)}
+  50%{opacity:.02;transform:scale(.9,.9)}
+}
+
+.error_files .image_wrapper_anim {
+  -webkit-animation:ghost_position 7.3s infinite;
+  animation:ghost_position 7.3s infinite
+}
+
+@-webkit-keyframes ghost_position {
+  0%,100%{-webkit-transform:translate3d(5px,0,0)}
+  50%{-webkit-transform:translate3d(-5px,0,0)}
+}
+
+@keyframes ghost_position {
+  0%,100%{transform:translate3d(5px,0,0)}
+  50%{transform:translate3d(-5px,0,0)}
+}
+
+.error_files .error_div {
+  padding:20px
+}
+
+.error_files .error_div .error {
+  font-size:25px;margin-bottom:30px
+}
+
+.error_files .error_div .message {
+  margin-bottom:30px
+}
+
+.error_files .error_div .number {
+  font-size:50px;
+  font-weight:700;
+  margin-bottom:30px
+}
