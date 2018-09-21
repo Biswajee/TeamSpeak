@@ -6,7 +6,7 @@ const mongo = require('mongodb').MongoClient;
 app.use('/static', express.static(path.join(__dirname, 'static')))
 
 //Connect to mongo...
-mongo.connect('mongodb://mongo:27017/team_chat_data', function(err, db){
+mongo.connect('mongodb://127.0.0.1:27017/team_chat_data', function(err, db){
 
   if(err){
       throw(err);
