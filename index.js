@@ -1,25 +1,44 @@
-var app = require('express')();
+var express = require('express');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 const mongo = require('mongodb').MongoClient;
+var bodyParser = require('body-parser');
+var path = require('path');
+var app = express();
 
-app.use('/static', express.static(path.join(__dirname, 'static')))
+
+//View Engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+//Body parser Middleware...
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+// Set Static path...
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 //Connect to mongo...
-mongo.connect('mongodb://127.0.0.1:27017/team_chat_data', function(err, db){
+/*
+mongo.connect('mongodb://mongo:27017/team_chat_data', function(err, db){
 
   if(err){
       throw(err);
   }
 
 console.log('mongoDB Connected...');
+*/
+
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+  res.render('index');
 });
 
 app.get('/login', function(req, res){
-  res.sendFile(__dirname + '/login.html');
+  console.log('login url read !');
+  res.render('login');
 });
 
 app.get('/chat.json', function(req, res){
@@ -75,8 +94,8 @@ io.on('connection', function(socket){
                     }
                 });
           });
-});
+//});
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+app.listen(3000, function(){
+  console.log('Server started on port :3000');
 });
