@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http').Server(app);
+const https = require('https');
 var io = require('socket.io')(http);
 const mongo = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
@@ -44,6 +45,31 @@ app.get('/login', function(req, res){
   console.log('login url read !');
   res.render('login');
 });
+
+
+/*--------------------------------------------------------------------*/
+app.get('/test', function(req, res){
+https.get('https://api.codechef.com/oauth/authorize?response_type=code&client_id=7cce36cb340734b30f805f2c47629548&state=xyz&redirect_uri=http://localhost:3000/login', (resp) => {
+  let data = '';
+
+  // A chunk of data has been recieved.
+  resp.on('data', (chunk) => {
+    data += chunk;
+  });
+
+  // The whole response has been received. Print out the result.
+  resp.on('end', () => {
+    console.log(data);
+    res.redirect('/login');
+    console.log(data);
+  });
+
+}).on("error", (err) => {
+  console.log("Error: " + err.message);
+});
+});
+/*---------------------------------------------------------------------*/
+
 
 app.post('/login/auth', function(req, res, next){
   console.log('Auth URL Visit !');
