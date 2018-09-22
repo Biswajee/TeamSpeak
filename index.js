@@ -4,8 +4,6 @@ var io = require('socket.io')(http);
 const mongo = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
 var path = require('path');
-const fs = require('fs');
-const expressCurl = require('express-curl');
 var app = express();
 
 
@@ -17,13 +15,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-//Middleware
-app.use(multiplart());
-
-// express curl middleware
-app.use(expressCurl);
-
-app.use('/auth', authRouter);
 
 // Set Static path...
 app.use(express.static(path.join(__dirname, '/public')));
