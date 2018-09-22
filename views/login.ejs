@@ -1,65 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="{% static 'images/fav_icon.png' %}" rel="shortcut icon">
-    <title>Codechef - TeamSpeak</title>
-
-    <!-- CSS  -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="static/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="static/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="static/css/bootstrap.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="static/css/custom_css.css/" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab|Raleway|Roboto" rel="stylesheet">
-    <!--@import url('https://fonts.googleapis.com/css?family=Josefin+Slab|Raleway|Roboto');-->
-
-
-    <style>
-        body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
-        .margin-fix {
-          margin-bottom: -20px;
-        }
-
-    </style>
-
-</head>
-
-<body>
-    <ul id="slide-out" class="sidenav">
-        <li><a class="waves-effect" href="https://www.codechef.com"><i class="material-icons">home</i>Codechef.com</a></li>
-        <li><a class="waves-effect" href="https://149.129.138.211"><i class="material-icons">filter_vintage</i>Login</a></li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li><a class="waves-effect" href="aboutus.html"><i class="material-icons">book</i>About us</a></li>
-        <li><a class="waves-effect" href="contact.html"><i class="material-icons">call</i>Codechef - Code of Conduct</a></li>
-    </ul>
-    <nav class="transparent navbar-fixed-top" role="navigation">
-        <div class="nav-wrapper container">
-            <a id="logo-container" href="https://www.codechef.com" class="brand-logo"><img src="images/brand_icon.png" style="height: 80px; width:220px;" /></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="https://www.codechef.com">Codechef - Home</a></li>
-                <li><a href="https://149.129.138.211">Login</a></li>
-                <li><a href="#">Report a Problem</a></li>
-            </ul>
-            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        </div>
-    </nav>
-
-    <div class="row parallax-window pad pad-down" data-parallax="scroll" data-image-src="static/images/68523.jpeg">
+<% include partials/header %>
+    <div class="row parallax-window pad pad-down" data-parallax="scroll" data-image-src="images/1123.jpeg">
         <div class="col-md-12 col-sm-12 text-center">
             <h1 class="head-banner-text light-green-text text-accent-3 small-pad">Codechef TeamSpeak | Collaborative efforts to contests made easy.</h1>
             <h5 class="col s12 light banner-text text-white">Teamspeek for codechef is a platform to share ideas and connect with team members <br /> to put up team efforts in a contest / hackathon. Now, teams can share ideas, talk to team members and share links on the fly.<br /> Just login with your codechef account to get started.
@@ -143,36 +83,4 @@
             </form>
         </div>
     </div>
-    <footer class="row purple pad-down lighten-1 margin-fix">
-        <div class="row pad margin-fix">
-            <div class="col l6 s12">
-                <h5 class="white-text text-center">Company Bio</h5>
-                <p class="grey-text text-lighten-4 text-center">
-                    CodeChef was created as a platform to help programmers make it big in the world of algorithms, computer programming and programming contests. At CodeChef we work hard to revive the geek in you by hosting a programming contest at the start of the month and another smaller programming challenge in the middle of the month. We also aim to have training sessions and discussions related to algorithms, binary search, technicalities like array size and the likes. Apart from providing a platform for programming competitions, CodeChef also has various algorithm tutorials and forum discussions to help those who are new to the world of computer programming.
-                </p>
-
-
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text text-center">Connect</h5>
-                <ul class="text-center">
-                    <li>
-                        <a class="white-text" href="/">Home</a>
-                    </li>
-                    <li><a class="white-text" href="../about">About Us</a></li>
-                    <li><a class="white-text" href="../login">Get Started Now</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-
-
-    <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="static/js/materialize.min.js"></script>
-    <script src="static/js/bootstrap.js"></script>
-    <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
-    <script src="static/js/parallax.min.js"></script>
-    <script src="static/js/init.js"></script>
-</body>
-</html>
+<% include partials/footer %>

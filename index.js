@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 // Set Static path...
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 
 
@@ -41,7 +41,12 @@ app.get('/login', function(req, res){
   res.render('login');
 });
 
+app.get('/thanks', function(req, res){
+  res.render('thanks');
+});
+
 app.get('/chat.json', function(req, res){
+  //let data = db.collection('codechef-chats');
   res.json(data);
 });
 
