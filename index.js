@@ -36,9 +36,28 @@ app.get('/', function(req, res){
   res.render('index');
 });
 
+var username;
+var errors = "Authentication Error";
+
 app.get('/login', function(req, res){
   console.log('login url read !');
   res.render('login');
+});
+
+app.post('/login/auth', function(req, res, next){
+  console.log('Auth URL Visit !');
+  username = req.body.codechef_id;
+  errors = null;
+  next();
+},
+  function(req, res) {
+  res.render('index', {'auth_user': username, 'errors': errors});
+});
+
+
+
+app.get('/', function(req, res){
+  res.render('index', {'auth_user': username, 'errors': errors} );
 });
 
 app.get('/thanks', function(req, res){

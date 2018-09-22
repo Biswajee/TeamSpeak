@@ -18,8 +18,15 @@
                     Codechef Team Chat
                 </h1>
                 <div id="status"></div>
-                <div id="chat">
-                    <input type="text" id="username" class="form-control" placeholder="Enter name...">
+
+                <% if(errors!=null){ %>
+                      <div class="well">
+                        <%=errors %>
+                      </div>
+                <% } %>
+
+              <div id="chat">
+                    <input type="text" id="username" class="form-control" placeholder="Enter name..." value="<%=auth_user %>" disabled>
                     <br>
                     <div class="card">
                         <div id="messages" class="card-block">
