@@ -4,6 +4,8 @@ var io = require('socket.io')(http);
 const mongo = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
 var path = require('path');
+const fs = require('fs');
+const expressCurl = require('express-curl');
 var app = express();
 
 
@@ -14,6 +16,14 @@ app.set('views', path.join(__dirname, 'views'));
 //Body parser Middleware...
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+//Middleware
+app.use(multiplart());
+
+// express curl middleware
+app.use(expressCurl);
+
+app.use('/auth', authRouter);
 
 // Set Static path...
 app.use(express.static(path.join(__dirname, '/public')));
@@ -48,7 +58,11 @@ app.post('/login/auth', function(req, res, next){
   console.log('Auth URL Visit !');
   username = req.body.codechef_id;
   errors = null;
+  if(username)
   next();
+  else {
+    res.redirect('/login');
+  }
 },
   function(req, res) {
   res.render('index', {'auth_user': username, 'errors': errors});
