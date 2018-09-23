@@ -48,25 +48,10 @@ app.get('/login', function(req, res){
 
 
 /*--------------------------------------------------------------------*/
-app.get('/test', function(req, res){
-https.get('https://api.codechef.com/oauth/authorize?response_type=code&client_id=7cce36cb340734b30f805f2c47629548&state=xyz&redirect_uri=http://localhost:3000/login', (resp) => {
-  let data = '';
+app.get('/oauth2', function(req, res){
+res.redirect('https://api.codechef.com/oauth/authorize?response_type=code&client_id=7cce36cb340734b30f805f2c47629548&state=xyz&redirect_uri=http://localhost:3000/login');
 
-  // A chunk of data has been recieved.
-  resp.on('data', (chunk) => {
-    data += chunk;
-  });
 
-  // The whole response has been received. Print out the result.
-  resp.on('end', () => {
-    console.log(data);
-    res.redirect('/login');
-    console.log(data);
-  });
-
-}).on("error", (err) => {
-  console.log("Error: " + err.message);
-});
 });
 /*---------------------------------------------------------------------*/
 
