@@ -66,19 +66,44 @@ app.get('/login', function(req, res){
       body: dataString
   };
 
+  var access_token, refresh_token;
+
   function callback(error, response, body) {
       if (!error && response.statusCode == 200) {
           //console.log(body);
-          console.log(JSON.parse(body).result.data.access_token);
+          access_token = JSON.parse(body).result.data.access_token;
+          refresh_token = JSON.parse(body).result.data.refresh_token;
       }
-
-      //res.redirect('/access_grant');
   }
-  console.log(dataString);
+  //console.log(dataString);
 
   request(options, callback);
 
 //------------------------------------------------------------------------------------------------------------------
+
+
+// Processing the access_token
+
+var query_headers = {
+    'Accept': 'application/json',
+    'Authorization': 'Bearer '+ access_token
+};
+
+var query_options = {
+    url: 'https://api.codechef.com/users/me',
+    headers: query_headers
+};
+
+function query_callback(error, response, body) {
+    if (!error && response.statusCode == 200) {
+        console.log(body);
+    }
+    console.log(body);
+}
+request(query_options, query_callback);
+
+// End of query using access_token...
+
 
 res.render('login');
 
@@ -91,7 +116,7 @@ res.redirect('https://api.codechef.com/oauth/authorize?response_type=code&client
 });
 /*---------------------------------------------------------------------*/
 
-
+// Endpoint to be converted to feedback submit....
 app.post('/login/auth', function(req, res, next){
   console.log('Auth URL Visit !');
   username = req.body.codechef_id;
