@@ -48,10 +48,15 @@ app.get('/login', function(req, res){
 
 
 /*--------------------------------------------------------------------*/
-app.get('/oauth2', function(req, res){
+app.get('/oauth2', function(req, res, next){
 res.redirect('https://api.codechef.com/oauth/authorize?response_type=code&client_id=7cce36cb340734b30f805f2c47629548&state=xyz&redirect_uri=http://localhost:3000/login');
-
-
+next();
+},
+function(req, res){
+  console.log("*************************************************REQUEST*************************************************");
+  console.log(req);
+  console.log("*************************************************RESPONSE*************************************************");
+  console.log(res);
 });
 /*---------------------------------------------------------------------*/
 
