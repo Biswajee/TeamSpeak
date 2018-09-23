@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var app = express();
 
+//CLIENT SECRET & ID --- REMOVE IN PRODUCTION
+const CLIENT_SECRET = '7771a6ddf052493003da004a21126112';
+const CLIENT_ID = '7cce36cb340734b30f805f2c47629548'
 
 //View Engine
 app.set('view engine', 'ejs');
@@ -42,14 +45,20 @@ var username;
 var errors = "Authentication Error";
 
 app.get('/login', function(req, res){
-  console.log('login url read !');
+  var AUTH_CODE = req.query.code;
+  console.log('code', req.query.code);
+  console.log('state', req.query.state);
+  res.redirect('https://api.codechef.com/oauth/token?grant_type=authorization_code&code='+AUTH_CODE+'&client_id='+CLIENT_ID+'&client_secret='+CLIENT_SECRET+'&redirect_uri=http://localhost:3000/access_grant');
   res.render('login');
 });
 
+app.get('/access_grant', function(req, res){
+    console.log('auth response', req.query);
+});
 
 /*--------------------------------------------------------------------*/
 app.get('/oauth2', function(req, res, next){
-res.redirect('https://api.codechef.com/oauth/authorize?response_type=code&client_id=7cce36cb340734b30f805f2c47629548&state=xyz&redirect_uri=http://localhost:3000/login');
+res.redirect('https://api.codechef.com/oauth/authorize?response_type=code&client_id='+CLIENT_ID+'&state=xyz&redirect_uri=http://localhost:3000/login');
 });
 /*---------------------------------------------------------------------*/
 
