@@ -4,12 +4,13 @@ const https = require('https');
 var io = require('socket.io')(http);
 const mongo = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
+var request = require('request');
 var path = require('path');
 var app = express();
 
 //CLIENT SECRET & ID --- REMOVE IN PRODUCTION
 const CLIENT_SECRET = '7771a6ddf052493003da004a21126112';
-const CLIENT_ID = '7cce36cb340734b30f805f2c47629548'
+const CLIENT_ID = '7cce36cb340734b30f805f2c47629548';
 
 //View Engine
 app.set('view engine', 'ejs');
@@ -48,13 +49,41 @@ app.get('/login', function(req, res){
   var AUTH_CODE = req.query.code;
   console.log('code', req.query.code);
   console.log('state', req.query.state);
-  res.redirect('https://api.codechef.com/oauth/token?grant_type=authorization_code&code='+AUTH_CODE+'&client_id='+CLIENT_ID+'&client_secret='+CLIENT_SECRET+'&redirect_uri=http://localhost:3000/access_grant');
-  res.render('login');
+
+//----------------------------------------------------------------------------------------------------------
+
+
+  var headers = {
+      'content-Type': 'application/json'
+  };
+
+  var dataString = '{"grant_type": "authorization_code","code":"'+ AUTH_CODE +'","client_id":"'+ CLIENT_ID +'","client_secret":"'+ CLIENT_SECRET +'","redirect_uri":"http://localhost:3000/login"}';
+
+  var options = {
+      url: 'https://api.codechef.com/oauth/token',
+      method: 'POST',
+      headers: headers,
+      body: dataString
+  };
+
+  function callback(error, response, body) {
+      if (!error && response.statusCode == 200) {
+          //console.log(body);
+          console.log(JSON.parse(body).result.data.access_token);
+      }
+
+      //res.redirect('/access_grant');
+  }
+  console.log(dataString);
+
+  request(options, callback);
+
+//------------------------------------------------------------------------------------------------------------------
+
+res.render('login');
+
 });
 
-app.get('/access_grant', function(req, res){
-    console.log('auth response', req.query);
-});
 
 /*--------------------------------------------------------------------*/
 app.get('/oauth2', function(req, res, next){
