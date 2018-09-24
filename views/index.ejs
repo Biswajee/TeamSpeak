@@ -59,7 +59,7 @@
                 }
             }
             // Connect to socket.io
-            var socket = io.connect();
+            var socket = io.connect('http://149.129.138.211:3000');
             // Check for connection
             if(socket !== undefined){
                 console.log('Connected to socket...');
