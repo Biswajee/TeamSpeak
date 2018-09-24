@@ -1,3 +1,5 @@
+// Import Statements...
+
 var express = require('express');
 var http = require('http').Server(app);
 const https = require('https');
@@ -27,7 +29,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 
 //Connect to mongo...
-/*
+
 mongo.connect('mongodb://mongo:27017/team_chat_data', function(err, db){
 
   if(err){
@@ -35,7 +37,7 @@ mongo.connect('mongodb://mongo:27017/team_chat_data', function(err, db){
   }
 
 console.log('mongoDB Connected...');
-*/
+
 
 // Home page of application
 
@@ -98,7 +100,11 @@ app.get('/login', function(req, res){
 
           function query_callback(error, response, body) {
               if (!error && response.statusCode == 200) {
-                  console.log(body);
+                  body = JSON.parse(body);
+                  var username = body['result']['data']['content']['username'];
+                  res.render('index', {'auth_user': username});
+              }else{
+                res.redirect('/');
               }
           }
           request(query_options, query_callback);
@@ -106,10 +112,8 @@ app.get('/login', function(req, res){
   }
   // End of query using access_token...
 
-  result = request(options, callback);
-  var username = "dummy";
-  console.log('username=================>',username );
-  res.render('index', {'auth_user': username});
+  request(options, callback);
+
 
 //------------------------------------------------------------------------------------------------------------------
 
@@ -198,7 +202,7 @@ io.on('connection', function(socket){
                     }
                 });
           });
-//});
+      });
 
 app.listen(3000, function(){
   console.log('Server started on port :3000');
