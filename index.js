@@ -13,7 +13,7 @@ var app = express();
 //CLIENT SECRET & ID --- REMOVE IN PRODUCTION
 const CLIENT_SECRET = '7771a6ddf052493003da004a21126112';
 const CLIENT_ID = '7cce36cb340734b30f805f2c47629548';
-const REDIRECT_URI = 'http://localhost:3000/login';
+const REDIRECT_URI = 'http://localhost/login';
 
 //View Engine
 app.set('view engine', 'ejs');
