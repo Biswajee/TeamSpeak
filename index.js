@@ -49,7 +49,7 @@ app.get('/', function(req, res){
 //OAuth2.0 Endpoint...
 
 app.get('/oauth2', function(req, res, next){
-res.redirect('https://api.codechef.com/oauth/authorize?response_type=code&client_id='+CLIENT_ID+'&state=xyz&redirect_uri=http://localhost:3000/login');
+res.redirect('https://api.codechef.com/oauth/authorize?response_type=code&client_id='+CLIENT_ID+'&state=xyz&redirect_uri=http://localhost/login');
 });
 
 
@@ -70,7 +70,7 @@ app.get('/login', function(req, res){
       'content-Type': 'application/json'
   };
 
-  var dataString = '{"grant_type": "authorization_code","code":"'+ AUTH_CODE +'","client_id":"'+ CLIENT_ID +'","client_secret":"'+ CLIENT_SECRET +'","redirect_uri":"http://localhost:3000/login"}';
+  var dataString = '{"grant_type": "authorization_code","code":"'+ AUTH_CODE +'","client_id":"'+ CLIENT_ID +'","client_secret":"'+ CLIENT_SECRET +'","redirect_uri":"http://localhost/login"}';
 
   var options = {
       url: 'https://api.codechef.com/oauth/token',
@@ -205,5 +205,5 @@ io.on('connection', function(socket){
       });
 
 app.listen(3000, function(){
-  console.log('Server started on port :3000');
+  console.log('Server started on port :3000 ** [ run docker on :80 ]');
 });
