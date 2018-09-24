@@ -37,10 +37,21 @@ mongo.connect('mongodb://mongo:27017/team_chat_data', function(err, db){
 console.log('mongoDB Connected...');
 */
 
+// Home page of application
 
 app.get('/', function(req, res){
-  res.render('index');
+  res.render('login');
 });
+
+
+//OAuth2.0 Endpoint...
+
+app.get('/oauth2', function(req, res, next){
+res.redirect('https://api.codechef.com/oauth/authorize?response_type=code&client_id='+CLIENT_ID+'&state=xyz&redirect_uri=http://localhost:3000/login');
+});
+
+
+// Chat platform display after valid user authentication...
 
 var username;
 var errors = "Authentication Error";
@@ -66,55 +77,46 @@ app.get('/login', function(req, res){
       body: dataString
   };
 
-  var access_token, refresh_token;
 
   function callback(error, response, body) {
       if (!error && response.statusCode == 200) {
           //console.log(body);
           access_token = JSON.parse(body).result.data.access_token;
           refresh_token = JSON.parse(body).result.data.refresh_token;
+
+          //Processing the access_token
+
+          var query_headers = {
+              'Accept': 'application/json',
+              'Authorization': 'Bearer '+ access_token
+          };
+
+          var query_options = {
+              url: 'https://api.codechef.com/users/me',
+              headers: query_headers
+          };
+
+          function query_callback(error, response, body) {
+              if (!error && response.statusCode == 200) {
+                  console.log(body);
+              }
+          }
+          request(query_options, query_callback);
       }
   }
-  //console.log(dataString);
+  // End of query using access_token...
 
-  request(options, callback);
+  result = request(options, callback);
+  var username = "dummy";
+  console.log('username=================>',username );
+  res.render('index', {'auth_user': username});
 
 //------------------------------------------------------------------------------------------------------------------
 
-
-// Processing the access_token
-
-var query_headers = {
-    'Accept': 'application/json',
-    'Authorization': 'Bearer '+ access_token
-};
-
-var query_options = {
-    url: 'https://api.codechef.com/users/me',
-    headers: query_headers
-};
-
-function query_callback(error, response, body) {
-    if (!error && response.statusCode == 200) {
-        console.log(body);
-    }
-    console.log(body);
-}
-request(query_options, query_callback);
-
-// End of query using access_token...
-
-
-res.render('login');
-
 });
 
 
-/*--------------------------------------------------------------------*/
-app.get('/oauth2', function(req, res, next){
-res.redirect('https://api.codechef.com/oauth/authorize?response_type=code&client_id='+CLIENT_ID+'&state=xyz&redirect_uri=http://localhost:3000/login');
-});
-/*---------------------------------------------------------------------*/
+
 
 // Endpoint to be converted to feedback submit....
 app.post('/login/auth', function(req, res, next){
@@ -132,19 +134,20 @@ app.post('/login/auth', function(req, res, next){
 });
 
 
-
-app.get('/', function(req, res){
-  res.render('index', {'auth_user': username, 'errors': errors} );
-});
+// Thanks page ending session - logout...
 
 app.get('/thanks', function(req, res){
   res.render('thanks');
 });
 
+
+// JSON of Mongodb stored chat - FOR A DEVELOPMENT API
+
 app.get('/chat.json', function(req, res){
   //let data = db.collection('codechef-chats');
   res.json(data);
 });
+
 
 io.on('connection', function(socket){
   console.log('a user connected');
