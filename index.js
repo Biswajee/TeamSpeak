@@ -1,15 +1,17 @@
 // Import Statements...
 
 var express = require('express');
-var http = require('http').Server(app);
+// var http = require('http').Server(app);
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 const https = require('https');
-var io = require('socket.io')(http);
+// var io = require('socket.io')(http);
 const mongo = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
 var request = require('request');
 var path = require('path');
-var app = express();
 
 //CLIENT SECRET & ID --- REMOVE IN PRODUCTION
 const CLIENT_SECRET = '7771a6ddf052493003da004a21126112';
@@ -206,6 +208,6 @@ io.on('connection', function(socket){
           });
       });
 
-app.listen(3000, function(){
+server.listen(80, function(){
   console.log('Server started on port :3000 ** [ run docker on :80 ]');
 });
