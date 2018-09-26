@@ -1,13 +1,10 @@
 // Import Statements...
 
 var express = require('express');
-// var http = require('http').Server(app);
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-
 const https = require('https');
-// var io = require('socket.io')(http);
 const mongo = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
 var request = require('request');
@@ -127,8 +124,9 @@ app.get('/login', function(req, res){
 
 
 // Endpoint to be converted to feedback submit....
-app.post('/login/auth', function(req, res, next){
-  console.log('Auth URL Visit !');
+
+app.post('/feedback', function(req, res, next){
+  console.log('Feedback URL Visit !');
   username = req.body.codechef_id;
   errors = null;
   if(username)
@@ -144,7 +142,7 @@ app.post('/login/auth', function(req, res, next){
 
 // Thanks page ending session - logout...
 
-app.get('/thanks', function(req, res){
+app.get('/logout', function(req, res){
   res.render('thanks');
 });
 

@@ -1,14 +1,21 @@
 <% include partials/header %>
-    <div class="container">
+<div class="text-right pad-extra pad-down row">
+  <div class="input-field text-center col s12">
+    <button class="btn  btn-success" value="submit" action="/logout" name="Submit">Logout</button>
+  </div>
+</div>
+    <div class="container padmini">
         <div class="row">
             <div class="col-md-6 offset-md-3 col-sm-12">
                 <h1 class="text-center">
                     Codechef Team Chat
                 </h1>
+
                 <div id="status"></div>
 
 
               <div id="chat">
+                    <i class="material-icons prefix">account_circle</i>
                     <input type="text" id="username" class="form-control" placeholder="Enter name..." value="<%=auth_user %>" disabled>
                     <br>
                     <div class="card">
