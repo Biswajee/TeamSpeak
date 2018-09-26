@@ -1,9 +1,58 @@
-<% include partials/header %>
+<% include partials/chat_header %>
 <div class="text-right pad-extra pad-down row">
   <div class="input-field text-center col s12">
     <button class="btn  btn-success" value="submit" action="/logout" name="Submit">Logout</button>
   </div>
 </div>
+
+<div class="chatbox">
+  <div class="chatlogs">
+    <div class="chat friend">
+      <div class="user-photo"></div>
+      <p class="chat-message"></p>
+    </div>
+    <div class="chat self">
+      <div class="user-photo"></div>
+      <p class="chat-message"></p>
+    </div>
+
+    <div class="chat-form">
+      <textarea></textarea>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="container padmini">
         <div class="row">
             <div class="col-md-6 offset-md-3 col-sm-12">
@@ -12,7 +61,6 @@
                 </h1>
 
                 <div id="status"></div>
-
 
               <div id="chat">
                     <i class="material-icons prefix">account_circle</i>
