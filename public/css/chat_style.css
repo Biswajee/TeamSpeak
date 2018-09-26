@@ -56,7 +56,7 @@ body {
   margin: 5px 10px 0;
   border-radius: 10px;
   color: : #fff;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .friend .chat-message {
@@ -66,4 +66,26 @@ body {
 .self .chat-message {
   background: #1ddced;
   order: -1;
+}
+
+.chat-form {
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.chat-form textarea {
+  background: #fbfbfb;
+  width: 75%;
+  height: 50px;
+  border: 2px solid #eee;
+  border-radius: 3px;
+  resize: none;
+  padding: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.chat-form textarea:focus{
+  background: #fff;
 }
