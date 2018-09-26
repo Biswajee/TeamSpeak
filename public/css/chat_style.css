@@ -48,6 +48,11 @@ body {
   height: 60px;
   background: #ccc;
   border-radius: 50%;
+  overflow: hidden;
+}
+
+.chat .user-photo img {
+  width: 100%;
 }
 
 .chat .chat-message {
@@ -88,4 +93,13 @@ body {
 
 .chat-form textarea:focus{
   background: #fff;
+}
+
+.chat-form textarea::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chat-form textarea::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: rgba(0,0,0,-1);
 }
