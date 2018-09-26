@@ -6,78 +6,26 @@
 </div>
 
 <div class="chatbox">
-  <div class="chatlogs">
+  <div class="container">
+    <i class="material-icons prefix">account_circle</i>
+    <input type="text" id="username" class="form-control" placeholder="Enter name..." value="<%=auth_user %>" disabled>
+  </div>
+  <div id="status" class="well well-sm green"></div>
+  <div class="chatlogs" id="chat">
     <div class="chat friend">
       <div class="user-photo"><img src="images/user.jpg"></div>
-      <p class="chat-message"></p>
+      <p class="chat-message" id="messages"></p>
     </div>
-    <div class="chat self">
+    <!--<div class="chat self">
       <div class="user-photo"><img src="images/user.jpg"></div>
       <p class="chat-message"></p>
-    </div>
+    </div>-->
 
     <div class="chat-form">
-      <textarea></textarea>
+      <textarea id="textarea" placeholder="Enter message..."></textarea>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="container padmini">
-        <div class="row">
-            <div class="col-md-6 offset-md-3 col-sm-12">
-                <h1 class="text-center">
-                    Codechef Team Chat
-                </h1>
-
-                <div id="status"></div>
-
-              <div id="chat">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input type="text" id="username" class="form-control" placeholder="Enter name..." value="<%=auth_user %>" disabled>
-                    <br>
-                    <div class="card">
-                        <div id="messages" class="card-block">
-
-                        </div>
-                    </div>
-                    <br>
-                    <textarea id="textarea" class="form-control" placeholder="Enter message..."></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 
     <script>
