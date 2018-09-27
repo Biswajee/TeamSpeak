@@ -88,6 +88,7 @@ body {
 }
 
 .chat-form {
+  margin-top: 5px;
   display: flex;
   align-items: flex-start;
 }
@@ -100,7 +101,7 @@ body {
   border-radius: 3px;
   resize: none;
   padding: 10px;
-  font-size: 12px;
+  font-size: 15px;
   color: #392547;
 }
 
