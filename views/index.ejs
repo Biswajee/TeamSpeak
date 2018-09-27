@@ -7,10 +7,14 @@
 </div>
 
 <div class="chatbox pad-down">
-  <div class="form-group text-center">
-    <img src="images/user.jpg" class="user-avatar">
-  <label for="username">Username:</label>
-    <input type="text" class="form-control" id="username" value="<%=auth_user %>" disabled>
+  <div class="row">
+    <div class="col-md-3 col-sm-3">
+      <img src="images/user.jpg" class="user-avatar">
+      <label for="username">Username:</label>
+    </div>
+    <div class="col-md-9 col-sm-3">
+      <input type="text" class="form-control" id="username" value="<%=auth_user %>" disabled>
+    </div>
   </div>
 
   <div id="status" class="alert alert-success fade in">
