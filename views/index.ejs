@@ -28,7 +28,7 @@
     </div>-->
 
     <div class="chat-form">
-      <textarea id="textarea" placeholder="Enter message..."></textarea>
+      <textarea id="text-area" placeholder="Enter message..."></textarea>
     </div>
   </div>
 </div>
@@ -42,8 +42,9 @@
             // Get Elements
             var status = element('status');
             var messages = element('messages');
-            var textarea = element('textarea');
-            console.log(textarea);
+            console.log('messages',messages);
+            var textarea = element('text-area');
+            console.log('textarea',textarea);
             var username = element('username');
 
             //Remove in production...
@@ -99,7 +100,7 @@
                         });
                         event.preventDefault();
                     }
-                });
+                })
 
                 // Handle Chat Clear
                 clearBtn.addEventListener('click', function(){
