@@ -99,6 +99,15 @@
                         event.preventDefault();
                     }
                 })
+                // Handle Chat Clear
+                clearBtn.addEventListener('click', function(){
+                    socket.emit('clear');
+                });
+                // Clear Message
+                socket.on('cleared', function(){
+                    messages.textContent = '';
+                });
+
             }
         })();
     </script>
