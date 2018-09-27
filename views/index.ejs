@@ -9,8 +9,9 @@
 </div>
 
 <div class="chatbox">
-  <div class="well well-sm">
-    <p id="username"><%=auth_user %></p>
+  <div class="form-group">
+  <label for="username">Username:</label>
+    <input type="text" class="form-control" id="username" value="<%=auth_user %>" disabled>
   </div>
 
   <div id="status" class="alert alert-success alert-dismissible fade in">
