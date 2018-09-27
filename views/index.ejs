@@ -1,20 +1,20 @@
 <% include partials/chat_header %>
-<div class="row pad-extra pad-down">
+<div class="row pad text-center">
   <div class="col-md-8 col-sm-6">
     <button class="btn btn-success" value="submit" action="/logout" name="Submit">Logout</button>
-
     <!--Remove in production-->
     <button id="clear" class="btn btn-danger">Clear</button>
   </div>
 </div>
 
 <div class="chatbox">
-  <div class="form-group">
+  <div class="form-group text-center">
+    <img src="images/user.jpg" class="user-avatar">
   <label for="username">Username:</label>
     <input type="text" class="form-control" id="username" value="<%=auth_user %>" disabled>
   </div>
 
-  <div id="status" class="alert alert-success alert-dismissible fade in">
+  <div id="status" class="alert alert-success fade in">
   </div>
 
   <div class="chatlogs" id="chat">
