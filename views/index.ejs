@@ -1,13 +1,12 @@
 <% include partials/chat_header %>
 <div class="row pad text-center">
   <div class="col-md-8 col-sm-6">
-    <button class="btn btn-success" value="submit" action="/logout" name="Submit">Logout</button>
     <!--Remove in production-->
     <button id="clear" class="btn btn-danger">Clear</button>
   </div>
 </div>
 
-<div class="chatbox">
+<div class="chatbox pad-down">
   <div class="form-group text-center">
     <img src="images/user.jpg" class="user-avatar">
   <label for="username">Username:</label>
@@ -41,9 +40,7 @@
             // Get Elements
             var status = element('status');
             var messages = element('messages');
-            console.log('messages',messages);
             var text_area = element('text-area');
-            console.log('textarea',text_area);
             var username = element('username');
 
             //Remove in production...
