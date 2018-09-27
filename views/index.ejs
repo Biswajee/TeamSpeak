@@ -12,9 +12,9 @@
   </div>
   <div id="status" class="well well-sm green"></div>
   <div class="chatlogs" id="chat">
-    <div class="chat friend">
+    <div class="chat friend" id="messages">
       <div class="user-photo"><img src="images/user.jpg"></div>
-      <p class="chat-message" id="messages"></p>
+      <p class="chat-message"></p>
     </div>
     <!--<div class="chat self">
       <div class="user-photo"><img src="images/user.jpg"></div>
@@ -62,7 +62,7 @@
                         for(var x = data.length-1;x >= 0; x--){
                             // Build out message div
                             var message = document.createElement('div');
-                            message.setAttribute('class', 'chat-message');
+                            message.setAttribute('class', 'chat friend');
                             message.textContent = data[x].name+": "+data[x].message;
                             messages.appendChild(message);
                             messages.insertBefore(message, messages.firstChild);
