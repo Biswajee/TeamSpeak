@@ -43,8 +43,8 @@
             var status = element('status');
             var messages = element('messages');
             console.log('messages',messages);
-            var textarea = element('text-area');
-            console.log('textarea',textarea);
+            var text_area = element('text-area');
+            console.log('textarea',text_area);
             var username = element('username');
 
             //Remove in production...
@@ -87,16 +87,17 @@
                     setStatus((typeof data === 'object')? data.message : data);
                     // If status is clear, clear text
                     if(data.clear){
-                        textarea.value = '';
+                        text_area.value = '';
                     }
                 });
                 // Handle Input
-                textarea.addEventListener('keydown', function(event){
+
+                text_area.addEventListener('keydown', function(event){
                     if(event.which === 13 && event.shiftKey == false){
                         // Emit to server input
                         socket.emit('input', {
                             name:username.value,
-                            message:textarea.value
+                            message:getElementById('text-area').value
                         });
                         event.preventDefault();
                     }
