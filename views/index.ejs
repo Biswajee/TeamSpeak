@@ -95,6 +95,8 @@
                 text_area.addEventListener('keydown', function(event){
                     if(event.which === 13 && event.shiftKey == false){
                         // Emit to server input
+                        console.log('username',username.value);
+                        console.log('textarea',text_area.value);
                         socket.emit('input', {
                             name:username.value,
                             message:getElementById('text-area').value
