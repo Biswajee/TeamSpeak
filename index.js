@@ -203,6 +203,15 @@ io.on('connection', function(socket){
                         });
                     }
                 });
+
+                // Handle clear - Remove in production
+                socket.on('clear', function(data){
+                  // Remove all chats from collection
+                  chat.remove({}, function(){
+                  // Emit cleared
+                  socket.emit('cleared');
+                  });
+                });
           });
       });
 
