@@ -48,7 +48,7 @@
             var username = element('username');
 
             //Remove in production...
-            var clearBtn = element('clear');
+            // var clearBtn = element('clear');
 
             // Set default status
             var statusDefault = status.textContent;
@@ -91,7 +91,8 @@
                     }
                 });
                 // Handle Input
-
+                console.log('username',username.value);
+                console.log('textarea',text_area.value);
                 text_area.addEventListener('keydown', function(event){
                     if(event.which === 13 && event.shiftKey == false){
                         // Emit to server input
@@ -105,14 +106,14 @@
                     }
                 })
 
-                // Handle Chat Clear
-                clearBtn.addEventListener('click', function(){
-                    socket.emit('clear');
-                });
-                // Clear Message
-                socket.on('cleared', function(){
-                    messages.textContent = '';
-                });
+                // // Handle Chat Clear
+                // clearBtn.addEventListener('click', function(){
+                //     socket.emit('clear');
+                // });
+                // // Clear Message
+                // socket.on('cleared', function(){
+                //     messages.textContent = '';
+                // });
 
             }
         })();
