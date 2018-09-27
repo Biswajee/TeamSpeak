@@ -10,7 +10,7 @@
 
 <div class="chatbox">
   <div class="well well-sm">
-    <p><%=auth_user %></p>
+    <p id="username"><%=auth_user %></p>
   </div>
 
   <div id="status" class="alert alert-success alert-dismissible fade in">
@@ -48,7 +48,7 @@
             var username = element('username');
 
             //Remove in production...
-            // var clearBtn = element('clear');
+            var clearBtn = element('clear');
 
             // Set default status
             var statusDefault = status.textContent;
@@ -91,29 +91,25 @@
                     }
                 });
                 // Handle Input
-                console.log('username',username.value);
-                console.log('textarea',text_area.value);
                 text_area.addEventListener('keydown', function(event){
                     if(event.which === 13 && event.shiftKey == false){
                         // Emit to server input
-                        console.log('username',username.value);
-                        console.log('textarea',text_area.value);
                         socket.emit('input', {
                             name:username.value,
-                            message:getElementById('text-area').value
+                            message:text_area.value
                         });
                         event.preventDefault();
                     }
                 })
 
-                // // Handle Chat Clear
-                // clearBtn.addEventListener('click', function(){
-                //     socket.emit('clear');
-                // });
-                // // Clear Message
-                // socket.on('cleared', function(){
-                //     messages.textContent = '';
-                // });
+                // Handle Chat Clear
+                clearBtn.addEventListener('click', function(){
+                    socket.emit('clear');
+                });
+                // Clear Message
+                socket.on('cleared', function(){
+                    messages.textContent = '';
+                });
 
             }
         })();
