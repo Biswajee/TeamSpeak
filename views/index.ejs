@@ -8,16 +8,16 @@
       <button id="clear" class="btn btn-danger">Clear</button>
     </div>
     <div class="col-sm">
-      <button class="btn btn-warning" name="create" id="create" onclick="displayid()" title="We will assign your unique team ID\nThis will be once in a session.">
+      <button class="btn btn-warning" name="create" id="create" onclick="displayid()" title="We will assign your unique team ID. This will be once in a session.">
         Create a team
       </button>
     </div>
     <div class="col-sm" id="id_display"></div>
     <div class="col-sm">
-      <input type="text" id="team_id" placeholder="Enter team ID" />
+      <input type="text" id="join_id" placeholder="Enter team ID" />
     </div>
     <div class="col-sm">
-      <button class="btn btn-success" name="join" id="join" title="Join an existing chat team">
+      <button class="btn btn-success" name="join" id="join" onclick="join_team()" title="Join an existing chat team">
         Join someone's team
       </button>
     </div>
@@ -149,8 +149,101 @@
                     messages.textContent = '';
                 });
 
-                socket.emit('join', id);
+                socket.emit('create', id);
             }
         })();
+
+        //Upon clicking join team button...
+        function join_team(){
+          var join_id = document.getElementById('join_id').value;
+          if(join_id === undefined){
+            alert('Enter a team ID to join chat !');
+          }
+
+          socket.emit('disconnect');
+
+
+
+          var element = function(id){
+              return document.getElementById(id);
+          }
+          // Get Elements
+          var status = element('status');
+          var messages = element('messages');
+          var text_area = element('text-area');
+          var username = element('username');
+
+          //Remove in production...
+          var clearBtn = element('clear');
+
+          var joinBtn = element('join');
+          var createBtn = element('create');
+
+          // Set default status
+          var statusDefault = status.textContent;
+          var setStatus = function(s){
+              // Set status
+              status.textContent = s;
+              if(s !== statusDefault){
+                  var delay = setTimeout(function(){
+                      setStatus(statusDefault);
+                  }, 4000);
+              }
+          }
+          // Connect to socket.io
+          var socket = io.connect('http://149.129.137.246');
+          // Check for connection
+          if(socket !== undefined){
+              console.log('Re connected to socket...');
+
+              // Handle Output
+              socket.on('output', function(data){
+                  console.log('Chat JSON',data);
+
+                  if(data.length){
+                      for(var x = data.length-1;x >= 0; x--){
+                          // Build out message div
+                          var message = document.createElement('p');
+                          message.setAttribute('class', 'chat-message');
+                          message.textContent = data[x].name+": "+data[x].message;
+                          messages.appendChild(message);
+                          messages.insertBefore(message, messages.firstChild);
+                      }
+                  }
+              });
+              // Get Status From Server
+              socket.on('status', function(data){
+                  // get message status
+                  setStatus((typeof data === 'object')? data.message : data);
+                  // If status is clear, clear text
+                  if(data.clear){
+                      text_area.value = '';
+                  }
+              });
+              // Handle Input
+              text_area.addEventListener('keydown', function(event){
+                  if(event.which === 13 && event.shiftKey == false){
+                      // Emit to server input
+                      socket.emit('input', {
+                          name:username.value,
+                          message:text_area.value
+                      });
+                      event.preventDefault();
+                  }
+              })
+
+              // Handle Chat Clear
+              clearBtn.addEventListener('click', function(){
+                  socket.emit('clear');
+              });
+              // Clear Message
+              socket.on('cleared', function(){
+                  messages.textContent = '';
+              });
+
+          socket.emit('join', join_id);
+        }
+      }
+
     </script>
 <% include partials/chat_footer %>
