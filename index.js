@@ -164,8 +164,8 @@ io.on('connection', function(socket){
 
 io.on('connection', function(socket){
 
-  socket.on('join', function(){
-    //to be added...
+  socket.on('join', function(team_id){
+    console.log("Team ID Detect ==> ", team_id);
   });
 
 

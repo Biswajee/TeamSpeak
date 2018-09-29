@@ -57,8 +57,9 @@
 
     <script>
 
+    var id;
     function makeid() {
-      var id = Math.floor(Math.random() * 5130);
+      id = Math.floor(Math.random() * 5130);
       console.log(id);
       var idbox = document.createElement('input');
       idbox.setAttribute('type', 'text');
@@ -66,6 +67,7 @@
       idbox.setAttribute("readonly", true);
       document.getElementById('id_display').appendChild(idbox);
       document.getElementById('id_display').insertBefore(idbox, document.getElementById('id_display').firstChild);
+      socket.emit('join', id);
     }
 
 
@@ -101,6 +103,7 @@
             // Check for connection
             if(socket !== undefined){
                 console.log('Connected to socket...');
+
                 // Handle Output
                 socket.on('output', function(data){
                     console.log('Chat JSON',data);
