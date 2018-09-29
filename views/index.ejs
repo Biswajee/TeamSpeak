@@ -8,7 +8,7 @@
       <button id="clear" class="btn btn-danger">Clear</button>
     </div>
     <div class="col-sm">
-      <button class="btn btn-warning" name="create" id="create" onclick="makeid()" title="We will generate your unique team ID">
+      <button class="btn btn-warning" name="create" id="create" onclick="displayid()" title="We will assign your unique team ID\nThis will be once in a session.">
         Create a team
       </button>
     </div>
@@ -57,22 +57,18 @@
 
     <script>
 
-    var id;
-    function makeid() {
-      id = Math.floor(Math.random() * 5130);
-      console.log(id);
+    var id = (
+              var id = Math.floor(Math.random() * 5130);
+              return id;
+            )();
+
+    function displayid() {
       var idbox = document.createElement('input');
       idbox.setAttribute('type', 'text');
       idbox.value = id;
       idbox.setAttribute("readonly", true);
       document.getElementById('id_display').appendChild(idbox);
       document.getElementById('id_display').insertBefore(idbox, document.getElementById('id_display').firstChild);
-      var socket = io.connect('http://149.129.137.246');
-      // Check for connection
-      if(socket !== undefined){
-          console.log('Connected to socket...');
-          socket.emit('join', id);
-    }
     }
 
 
@@ -154,6 +150,7 @@
                     messages.textContent = '';
                 });
 
+                socket.emit('join', id);
             }
         })();
     </script>
