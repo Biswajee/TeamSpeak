@@ -11,8 +11,8 @@
       <button class="btn btn-warning" name="create" id="create" onclick="makeid()" title="We will generate your unique team ID">
         Create a team
       </button>
-      <div class="col-sm" id="id_display"></div>
     </div>
+    <div class="col-sm" id="id_display"></div>
     <div class="col-sm">
       <input type="text" id="team_id" placeholder="Enter team ID" />
     </div>
@@ -59,6 +59,7 @@
 
     function makeid() {
       var id = Math.floor(Math.random() * 20);
+      console.log(id);
       var idbox = document.createElement('input');
       idbox.setAttribute('type', 'text');
       idbox.textContent = id;
