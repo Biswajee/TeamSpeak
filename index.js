@@ -169,7 +169,7 @@ io.on('connection', function(socket){
 
 
 
-  let chat = db.collection(team_id);
+  let chat = db.collection(""+team_id+"");
 
   // Create function to send status
         sendStatus = function(s){
