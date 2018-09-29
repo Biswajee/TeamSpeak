@@ -57,10 +57,9 @@
 
     <script>
 
-    var id = (
-              var idlocal = Math.floor(Math.random() * 5130);
-              return idlocal;
-            )();
+    var id = function(){
+              return Math.floor(Math.random() * 5130);
+             }();
 
     function displayid() {
       var idbox = document.createElement('input');
