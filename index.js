@@ -166,10 +166,10 @@ io.on('connection', function(socket){
 
   socket.on('join', function(team_id){
     console.log("Team ID Detect ==> ", team_id);
-  });
 
 
-  let chat = db.collection('codechef-chats');
+
+  let chat = db.collection(team_id);
 
   // Create function to send status
         sendStatus = function(s){
@@ -218,6 +218,9 @@ io.on('connection', function(socket){
                   socket.emit('cleared');
                   });
                 });
+
+              });
+
           });
       });
 
