@@ -1,10 +1,25 @@
 <% include partials/chat_header %>
-<div class="row pad text-center">
-  <div class="col-md-8 col-sm-6">
-    <!--Remove in production-->
-    <button id="clear" class="btn btn-danger">Clear</button>
+<div class="pad"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <button id="clear" class="btn btn-danger">Clear</button>
+    </div>
+    <div class="col-sm">
+      <button class="btn btn-warning" action="index.ejs" name="create" id="create" title="We will generate your unique team ID">
+        Create a team
+      </button>
+    </div>
+    <div class="col-sm">
+      <input type="text" id="team_id" placeholder="Enter team ID" />
+      <button class="btn btn-success" action="index.ejs" name="join" title="Join an existing chat team">
+        Join someone's team
+      </button>
+    </div>
   </div>
 </div>
+
 
 <div class="chatbox pad-down">
   <div class="row">
