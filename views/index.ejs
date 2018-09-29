@@ -8,15 +8,16 @@
       <button id="clear" class="btn btn-danger">Clear</button>
     </div>
     <div class="col-sm">
-      <button class="btn btn-warning" action="index.ejs" name="create" id="create" title="We will generate your unique team ID">
+      <button class="btn btn-warning" name="create" id="create" onclick="makeid()" title="We will generate your unique team ID">
         Create a team
       </button>
+      <div class="col-sm" id="id_display"></div>
     </div>
     <div class="col-sm">
       <input type="text" id="team_id" placeholder="Enter team ID" />
     </div>
     <div class="col-sm">
-      <button class="btn btn-success" action="index.ejs" name="join" title="Join an existing chat team">
+      <button class="btn btn-success" name="join" id="join" title="Join an existing chat team">
         Join someone's team
       </button>
     </div>
@@ -55,6 +56,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 
     <script>
+
+    function makeid() {
+      var id = Math.floor(Math.random() * 20);
+      var idbox = document.createElement('input');
+      idbox.setAttribute('type', 'text');
+      idbox.textContent = id;
+      idbox.setAttribute("readonly", true);
+      getElementById('id_display').appendChild(idbox);
+      getElementById('id_display').insertBefore(idbox, getElementById('id_display').firstChild);
+    }
+
+
         (function(){
             var element = function(id){
                 return document.getElementById(id);
@@ -67,6 +80,9 @@
 
             //Remove in production...
             var clearBtn = element('clear');
+
+            var joinBtn = element('join');
+            var createBtn = element('create');
 
             // Set default status
             var statusDefault = status.textContent;
@@ -86,7 +102,7 @@
                 console.log('Connected to socket...');
                 // Handle Output
                 socket.on('output', function(data){
-                    console.log(data);
+                    console.log('Chat JSON',data);
 
                     if(data.length){
                         for(var x = data.length-1;x >= 0; x--){

@@ -150,7 +150,7 @@ app.get('/logout', function(req, res){
 // JSON of Mongodb stored chat - FOR A DEVELOPMENT API
 
 app.get('/chat.json', function(req, res){
-  //let data = db.collection('codechef-chats');
+  let data = db.collection('codechef-chats');
   res.json(data);
 });
 
@@ -163,6 +163,12 @@ io.on('connection', function(socket){
 });
 
 io.on('connection', function(socket){
+
+  socket.on('join', function(){
+    //to be added...
+  });
+
+
   let chat = db.collection('codechef-chats');
 
   // Create function to send status
