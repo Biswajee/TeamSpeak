@@ -223,7 +223,7 @@ io.on('connection', function(socket){
 
               //On clicking join button...
               socket.on('join', function(join_id){
-                let chat = db.collection(""+team_id+"");
+                let chat = db.collection(""+join_id+"");
 
                 // Create function to send status
                       sendStatus = function(s){
@@ -277,7 +277,6 @@ io.on('connection', function(socket){
               });
 
           });
-      });
 
 server.listen(80, function(){
   console.log('Server started on port :3000 ** [ run docker on :80 ]');
