@@ -62,7 +62,7 @@
       console.log(id);
       var idbox = document.createElement('input');
       idbox.setAttribute('type', 'text');
-      idbox.textContent = ""+id;
+      idbox.value = id;
       idbox.setAttribute("readonly", true);
       document.getElementById('id_display').appendChild(idbox);
       document.getElementById('id_display').insertBefore(idbox, document.getElementById('id_display').firstChild);
