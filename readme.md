@@ -2,6 +2,8 @@
 
 [![GitHub issues](https://img.shields.io/github/issues/Biswajee/TeamSpeak.svg)](https://github.com/Biswajee/TeamSpeak/issues)
 [![GitHub license](https://img.shields.io/github/license/Biswajee/TeamSpeak.svg)](https://github.com/Biswajee/TeamSpeak/blob/master/LICENSE)
+[![](https://images.microbadger.com/badges/image/biswajee/chatvibes_app.svg)](https://hub.docker.com/r/biswajee/chatvibes_app/)
+[![](https://images.microbadger.com/badges/version/biswajee/chatvibes_app.svg)](https://hub.docker.com/r/biswajee/chatvibes_app/)
 
 ## Introduction
 TeamSpeak allows participation in coding/hackathon events in a more fun way where you can discuss about ways to solve a problem to ways to design the architecture.
@@ -31,7 +33,7 @@ The application is a docker container application which can run on any platform 
 
 Here's what to be done,
 
-Get yourself a cloud instance with Ubuntu as OS (I have used **ALibaba Cloud ECS instance** with **Ubuntu 16.04**). Other instance with different versions of Ubuntu may differ a bit. The following steps will guide you to install docker in **Ubuntu 16.04**:
+Get yourself a cloud instance with Ubuntu as OS (I have used **Alibaba Cloud ECS instance** with **Ubuntu 16.04**). Other instance with different versions of Ubuntu may differ a bit. The following steps will guide you to install docker in **Ubuntu 16.04**:
 
 _**Note**: Head to point 3. if you already have docker running locally._
 
