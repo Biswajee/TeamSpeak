@@ -238,7 +238,7 @@ io.on('connection', function(socket){
                                   }
 
                                   // Emit the messages
-                                  socket.emit('output', res);
+                                  socket.emit('join_output', res);
                               });
 
                               // Handle input events

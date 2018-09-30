@@ -113,3 +113,7 @@ body {
 .less-margin {
   margin-top: -20px;
 }
+.footpad {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
