@@ -17,6 +17,7 @@
       <button class="btn btn-success" name="join" id="join" onclick="join_team()" title="Join an existing chat team">
         Join someone's team
       </button>
+      <button id='clear' style="display: hidden;"></button>
     </div>
   </div>
 </div>
@@ -33,8 +34,8 @@
     </span>
   </div>
 
-  <div id="status" class="alert alert-success fade in">
-  </div>
+  <!--<div id="status" class="alert alert-success">
+  </div>-->
 
   <div class="chatlogs" id="chat">
     <div class="chat friend">
@@ -73,7 +74,7 @@
                 return document.getElementById(id);
             }
             // Get Elements
-            var status = element('status');
+            //var status = element('status');
             var messages = element('messages');
             var text_area = element('text-area');
             var username = element('username');
@@ -84,17 +85,17 @@
             var joinBtn = element('join');
             var createBtn = element('create');
 
-            // Set default status
-            var statusDefault = status.textContent;
-            var setStatus = function(s){
-                // Set status
-                status.textContent = s;
-                if(s !== statusDefault){
-                    var delay = setTimeout(function(){
-                        setStatus(statusDefault);
-                    }, 4000);
-                }
-            }
+            // // Set default status
+            // var statusDefault = status.textContent;
+            // var setStatus = function(s){
+            //     // Set status
+            //     status.textContent = s;
+            //     if(s !== statusDefault){
+            //         var delay = setTimeout(function(){
+            //             setStatus(statusDefault);
+            //         }, 4000);
+            //     }
+            // }
             // Connect to socket.io
             var socket = io.connect('http://149.129.137.246');
             // Check for connection
@@ -137,11 +138,11 @@
                     }
                 })
 
-                // // DEVELOPMENT :: Handle Chat Clear
-                // clearBtn.addEventListener('click', function(){
-                //     socket.emit('clear');
-                // });
-                // Clear Message
+                // DEVELOPMENT :: Handle Chat Clear
+                clearBtn.addEventListener('click', function(){
+                    socket.emit('clear');
+                });
+                //Clear Message
                 socket.on('cleared', function(){
                     messages.textContent = '';
                 });
@@ -163,7 +164,7 @@
               return document.getElementById(id);
           }
           // Get Elements
-          var status = element('status');
+          //var status = element('status');
           var messages = element('messages');
           var text_area = element('text-area');
           var username = element('username');
@@ -174,17 +175,17 @@
           var joinBtn = element('join');
           var createBtn = element('create');
 
-          // Set default status
-          var statusDefault = status.textContent;
-          var setStatus = function(s){
-              // Set status
-              status.textContent = s;
-              if(s !== statusDefault){
-                  var delay = setTimeout(function(){
-                      setStatus(statusDefault);
-                  }, 4000);
-              }
-          }
+          // // Set default status
+          // var statusDefault = status.textContent;
+          // var setStatus = function(s){
+          //     // Set status
+          //     status.textContent = s;
+          //     if(s !== statusDefault){
+          //         var delay = setTimeout(function(){
+          //             setStatus(statusDefault);
+          //         }, 4000);
+          //     }
+          // }
           // Connect to socket.io
           var socket = io.connect('http://149.129.137.246');
           // Check for connection
