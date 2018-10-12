@@ -23,7 +23,7 @@ This repository is all about a chat application `TeamSpeak` which uses:
 That's all :)
 
 ## Is the application live ?
-You can find the application running on http://149.129.137.246 until October 10, 2018 only.
+You can find the application running on http://149.129.145.179 until November 10, 2018 only.
 
 But what after that ?
 
@@ -88,7 +88,7 @@ _**Note**: Head to point 3. if you already have docker running locally._
 
 ## Navigating through the website
 
-The website at http://149.129.137.246 is built using **BootStrap** and **Materialize** CSS.
+The website at http://149.129.145.179 is built using **BootStrap** and **Materialize** CSS.
 
 + Click the **Login with Codechef** button.
 
