@@ -108,10 +108,6 @@ The website at http://149.129.145.179 is built using **BootStrap** and **Materia
 
 + At a later point of time, the team members can enter their **Team ID** to see their previous chat and can continue conversation on the same thread or get a **New ID** and start a brand new conversation with same or different members.
 
-## Open source ?
-
-The repository is not accepting any **pull requests** for now as it is under evaluation for **Codechef API Hackathon 2018**. Thank you for your interest in the repository.
-
 ## Moments of hardwork
 Cloud was completely new to me and I ended up with 180 pulls during development ! :P
 
